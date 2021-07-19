@@ -35,7 +35,34 @@ class Calculator {
     this.currentOperand = "";
   }
 
-  compute() {}
+  compute() {
+    let computation;
+    const prev = parseFloat(this.previousOperand);
+    const current = parseFloat(this.currentOperand);
+
+    // Check if the user actually enters a value
+    if (isNaN(prev) || isNaN(current)) return;
+
+    switch (this.operation) {
+      case `+`:
+        computation = prev + current;
+        break;
+      case `-`:
+        computation = prev - current;
+        break;
+      case `*`:
+        computation = prev * current;
+        break;
+      case `&divide;`:
+        computation = prev / current;
+        break;
+      default:
+        return;
+    }
+    this.currentOperand = computation;
+    this.operation = undefined;
+    this.previousOperand = ``;
+  }
 
   updateDisplay() {
     // Set the current Operand display
@@ -82,4 +109,10 @@ operationButtons.forEach((button) => {
     // Updates the Display
     calculator.updateDisplay();
   });
+});
+
+// Equals Button
+equalsButton.addEventListener(`click`, (button) => {
+  calculator.compute();
+  calculator.updateDisplay();
 });
