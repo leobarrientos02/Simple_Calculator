@@ -12,7 +12,9 @@ class Calculator {
     this.operation = "";
   }
 
-  delete() {}
+  delete() {
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
+  }
 
   appendNumber(number) {
     if (number === `.` && this.currentOperand.includes(`.`)) return;
@@ -120,5 +122,11 @@ equalsButton.addEventListener(`click`, (button) => {
 // Clear Button
 allClearButton.addEventListener(`click`, (button) => {
   calculator.clear();
+  calculator.updateDisplay();
+});
+
+// Delete Button
+deleteButton.addEventListener(`click`, (button) => {
+  calculator.delete();
   calculator.updateDisplay();
 });
