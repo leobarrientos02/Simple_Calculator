@@ -53,7 +53,7 @@ class Calculator {
       case `*`:
         computation = prev * current;
         break;
-      case `&divide;`:
+      case `/`:
         computation = prev / current;
         break;
       default:
@@ -114,5 +114,11 @@ operationButtons.forEach((button) => {
 // Equals Button
 equalsButton.addEventListener(`click`, (button) => {
   calculator.compute();
+  calculator.updateDisplay();
+});
+
+// Clear Button
+allClearButton.addEventListener(`click`, (button) => {
+  calculator.clear();
   calculator.updateDisplay();
 });
